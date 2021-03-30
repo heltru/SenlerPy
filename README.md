@@ -23,12 +23,16 @@ $ pip install git+https://github.com/tezmen/senlerpy
 ```python
 api = Senler('SECRET')
 
-data = api(
-	methods.Deliveries.stat,
-	date_from='2018-01-01 10:00:00',
-	date_to='2018-12-30 23:00:00',
-	vk_group_id=1,
-)
+data_send = {
+    'count': 1000,
+    'date_from': '30.03.2021 01:00:00',
+    'date_to': '30.03.2021 15:37:59',
+    'vk_user_id[]': [1234325, 45647645],
+    'vk_group_id': 99993299
+}
+
+data = api(methods.Subscribers.get, data_send)
+
 
 print(data['items'])
 ```

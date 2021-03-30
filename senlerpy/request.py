@@ -18,7 +18,7 @@ class RequestApi:
 		for key in data.keys():
 			item = data[key]
 			if isinstance(item, list) or isinstance(item, tuple):
-				str_data += ''.join(item)
+				str_data += ''.join(str(x) for x in item)
 			else:
 				str_data += str(item)
 		str_data += self.__secret
