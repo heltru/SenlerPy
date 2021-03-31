@@ -21,7 +21,6 @@ class Senler:
 	def __call__(self, method, params=None):
 		if params is None:
 			params = {}
-		print('__call__',params)
 
 		if 'vk_group_id' not in params.keys():
 			if self.vk_group is None:
