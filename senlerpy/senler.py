@@ -18,12 +18,18 @@ class Senler:
 			return response
 		raise ApiError(response)
 
-	def __call__(self, method, data):
-		if 'vk_group_id' not in data.keys():
+	def __call__(self, method, params=None):
+		if params is None:
+			params = {}
+		print('__call__',params)
+
+		if 'vk_group_id' not in params.keys():
 			if self.vk_group is None:
 				raise WrongId('vk_group_id is not specified by any of the methods')
-			data['vk_group_id'] = self.vk_group
-		response = self._rq.send(str(method), data)
+			params['vk_group_id'] = self.vk_group
+
+		response = self._rq.send(str(method), params)
+
 		json_response = {}
 		try:
 			json_response = json.loads(response.text)
